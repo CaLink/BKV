@@ -1,0 +1,408 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0308
+header_name {.h}
+code_name {.cxx}
+Function {} {open
+} {
+  Fl_Window {} {open selected
+    xywh {539 86 1245 675} type Double color 23 visible
+  } {
+    Fl_Input inputA {
+      xywh {1060 250 155 40}
+    }
+    Fl_Input inputB {
+      xywh {1060 375 155 40}
+    }
+    Fl_Input inputC {
+      xywh {1070 575 155 40}
+    }
+    Fl_Button bitChanger {
+      label 16
+      xywh {280 145 95 35} color 29 labelsize 18
+    }
+    Fl_Button {} {
+      label A
+      xywh {0 265 80 25} box NO_BOX labelsize 24
+    }
+    Fl_Button {} {
+      label B
+      xywh {0 380 80 40} box NO_BOX labelsize 24
+    }
+    Fl_Button {} {
+      label C
+      xywh {0 585 80 40} box NO_BOX labelsize 24
+    }
+    Fl_Button {} {
+      label {+}
+      xywh {5 330 70 20} box NO_BOX labelsize 24
+    }
+    Fl_Button {} {
+      label {Бинарный калькулятор}
+      xywh {440 20 345 35} box NO_BOX labelsize 26
+    }
+    Fl_Button {} {
+      label {Выберите разрядность:}
+      xywh {205 80 230 50} box NO_BOX labelsize 18
+    }
+    Fl_Button {} {
+      label {Выберите систему счисления:}
+      xywh {710 80 305 50} box NO_BOX labelsize 18
+    }
+    Fl_Button bitChanger {
+      label 10
+      xywh {825 145 95 35} labelsize 18
+    }
+    Fl_Button {} {
+      label {Результат:}
+      xywh {30 545 105 35} box NO_BOX labelsize 18
+    }
+    Fl_Button {} {
+      label {Выберите действие:}
+      xywh {460 450 270 45} box NO_BOX labelsize 18
+    }
+    Fl_Button {} {
+      label {+}
+      xywh {400 495 50 35} labelsize 18
+    }
+    Fl_Button {} {
+      label {-}
+      xywh {460 495 50 35} labelsize 18
+    }
+    Fl_Button {} {
+      label {<<}
+      xywh {525 495 50 35} labelsize 18
+    }
+    Fl_Button {} {
+      label {%}
+      xywh {650 495 50 35} labelsize 18
+    }
+    Fl_Button {} {
+      label {~A}
+      xywh {715 495 50 35} labelsize 18
+    }
+    Fl_Button {} {
+      label {>>}
+      xywh {585 495 50 35} labelsize 18
+    }
+    Fl_Button {} {
+      label 1
+      xywh {65 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {65 385 25 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {199 385 25 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {334 385 25 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {469 385 25 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {604 385 25 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {739 385 25 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {874 385 25 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {1000 385 25 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {125 590 25 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {240 590 25 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {330 590 25 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {415 590 25 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {505 590 25 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {595 590 25 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {685 590 25 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {775 590 25 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {80 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {95 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {110 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {125 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {140 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {155 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {170 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {185 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {200 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {215 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {230 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {245 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {260 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {275 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {290 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {305 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {320 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {335 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {350 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {365 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {380 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {395 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {410 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {425 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {440 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {455 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {470 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {485 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {500 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {515 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {530 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {545 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {560 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {575 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {590 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {605 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {620 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {635 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {650 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {665 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {680 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {695 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {710 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {725 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {740 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {755 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {770 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {785 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {800 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {815 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {830 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {845 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {860 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {875 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {890 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {905 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {920 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {935 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {950 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {965 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {980 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {995 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {1010 265 15 25} labelsize 16
+    }
+  }
+}

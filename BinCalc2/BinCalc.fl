@@ -5,27 +5,92 @@ code_name {.cxx}
 Function {} {open
 } {
   Fl_Window {} {open
-    xywh {502 184 1000 400} type Double visible
+    xywh {458 188 1245 675} type Double color 23 hide
   } {
     Fl_Input inputA {
-      label A
-      xywh {50 60 155 40}
+      xywh {1060 250 155 40}
     }
     Fl_Input inputB {
-      label B
-      xywh {50 120 155 40}
+      xywh {1060 375 155 40}
     }
     Fl_Input inputC {
-      label C
-      xywh {50 180 155 40}
+      xywh {1070 575 155 40}
     }
     Fl_Button bitChanger {
-      label bit
-      xywh {240 25 70 20}
+      label 16
+      xywh {280 145 95 35} color 29 labelsize 18
     }
     Fl_Button sysChanger {
-      label {Numeral system}
-      xywh {335 25 140 20}
+      label 10
+      xywh {825 145 95 35} labelsize 18
+    }
+    Fl_Button {} {
+      label A
+      xywh {0 265 80 25} box NO_BOX labelsize 24
+    }
+    Fl_Button {} {
+      label B
+      xywh {0 380 80 40} box NO_BOX labelsize 24
+    }
+    Fl_Button {} {
+      label C
+      xywh {0 585 80 40} box NO_BOX labelsize 24
+    }
+    Fl_Button {} {
+      label {+}
+      xywh {5 330 70 20} box NO_BOX labelsize 24
+    }
+    Fl_Button {} {
+      label {Бинарный калькулятор}
+      xywh {440 20 345 35} box NO_BOX labelsize 26
+    }
+    Fl_Button {} {
+      label {Выберите разрядность:}
+      xywh {205 80 230 50} box NO_BOX labelsize 18
+    }
+    Fl_Button {} {
+      label {Выберите систему счисления:}
+      xywh {710 80 305 50} box NO_BOX labelsize 18
+    }
+    Fl_Button {} {
+      label {Результат:}
+      xywh {30 545 105 35} box NO_BOX labelsize 18
+    }
+    Fl_Button {} {
+      label {Выберите действие:}
+      xywh {490 450 270 45} box NO_BOX labelsize 18
+    }
+    Fl_Button {} {
+      label {~A}
+      xywh {930 495 50 35} labelsize 18
+    }
+    Fl_Button {} {
+      label 1
+      xywh {65 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {65 385 25 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {1000 385 25 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {70 590 25 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {1000 585 25 25} labelsize 16
+    }
+    Fl_Button {} {
+      label 1
+      xywh {1010 265 15 25} labelsize 16
+    }
+    Fl_Button {} {
+      label {+}
+      xywh {240 495 50 35} labelsize 18
     }
   }
 }
