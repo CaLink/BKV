@@ -15,6 +15,7 @@ extern Fl_Button* sysChanger;
 void init();
 
 void SetButtonValue(Fl_Button*, void*);
+void ChangeButton(Fl_Button*, bool);
 void CountButton(Fl_Button*);
 void Count(Fl_Button* [], Fl_Input*);
 //void RePrint
@@ -24,6 +25,9 @@ void DoOperation(Fl_Button*, void*);
 void SetValue(Fl_Input*, Fl_Button* []);
 void SetValue(Fl_Input* who, Fl_Button* arr[], bool);
 void GetInput(Fl_Input*);
+
+Fl_Color zero = FL_LIGHT3;
+Fl_Color one = (Fl_Color)18;
 
 Fl_Button* opArr[12];
 const char* op[] = { "+","-","*","/","%","<<",">>","~A","~B","&","|","^" };

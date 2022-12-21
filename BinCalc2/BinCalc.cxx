@@ -10,7 +10,7 @@ Fl_Button* sysChanger = (Fl_Button*)0;
 int main(int argc, char** argv) {
 	Fl_Double_Window* w;
 	{
-		Fl_Double_Window* o = new Fl_Double_Window(1245, 675);
+		Fl_Double_Window* o = new Fl_Double_Window(1245, 675,"Binary Calculator");
 		w = o; if (w) {/* empty */ }
 		o->color((Fl_Color)23);
 		{
@@ -55,17 +55,19 @@ int main(int argc, char** argv) {
 			o->labelsize(24);
 		}
 		{
-			Fl_Button* o = new Fl_Button(440, 20, 345, 35, "Bit Calc");
+			
+			Fl_Button* o = new Fl_Button(440, 20, 345, 35, "Binary Calculator");
 			o->box(FL_NO_BOX);
 			o->labelsize(26);
+			
 		}
 		{
-			Fl_Button* o = new Fl_Button(205, 80, 230, 50, "Bit");
+			Fl_Button* o = new Fl_Button(210, 80, 230, 50, "Number of Bits");
 			o->box(FL_NO_BOX);
 			o->labelsize(18);
 		}
 		{
-			Fl_Button* o = new Fl_Button(710, 80, 305, 50, "System");
+			Fl_Button* o = new Fl_Button(715, 80, 305, 50, "Numeral System");
 			o->box(FL_NO_BOX);
 			o->labelsize(18);
 		}
@@ -104,14 +106,17 @@ void init()
 			x = j * scale[i];
 			A[i][j] = new Fl_Button(65 + x, aY, 15 + w, 25, "0");
 			A[i][j]->labelsize(16);
+			ChangeButton(A[i][j],false);
 			A[i][j]->callback((Fl_Callback*)SetButtonValue);
 			A[i][j]->hide();
 			B[i][j] = new Fl_Button(65 + x, bY, 15 + w, 25, "0");
 			B[i][j]->labelsize(16);
+			ChangeButton(B[i][j],false);
 			B[i][j]->callback((Fl_Callback*)SetButtonValue);
 			B[i][j]->hide();
 			C[i][j] = new Fl_Button(65 + x, cY, 15 + w, 25, "0");
 			C[i][j]->labelsize(16);
+			ChangeButton(C[i][j],false);
 			C[i][j]->callback((Fl_Callback*)SetButtonValue);
 			C[i][j]->hide();
 		}
@@ -128,7 +133,7 @@ void init()
 
 	for (int i = 0; i < 12; i++)
 	{
-		opArr[i] = new Fl_Button(240 + 57.5 * i, 495, 50, 35, op[i]);
+		opArr[i] = new Fl_Button(280 + 57.5 * i, 495, 50, 35, op[i]);
 		opArr[i]->callback((Fl_Callback*)DoOperation);
 	}
 
@@ -139,9 +144,23 @@ void SetButtonValue(Fl_Button* but, void*)
 {
 	if (but->y() == cY)
 		return;
-	but->label() == "1" ? but->label("0") : but->label("1");
+	but->label() == "1" ? ChangeButton(but,false) : ChangeButton(but,true);
 
 	CountButton(but);
+}
+
+void ChangeButton(Fl_Button* but, bool sw)
+{
+	if(sw)
+	{
+		but->label("1");
+		but->color(one);
+	}
+	else
+	{
+		but->label("0");
+		but->color(zero);
+	}
 }
 
 void CountButton(Fl_Button* but)
@@ -296,9 +315,18 @@ void SetValue(Fl_Input* who, Fl_Button* arr[])
 	case 8:
 		sscanf(who->value(), "%o", &val); break;
 	}
+	
+	switch (who->y())
+	{
+	case aiY:
+		cA = val;break;
+	case biY:
+		cB=val;break;
+	}
+
 
 	for (int i = 0; i < bitArr[bit]; i++)
-		(val & (1 << i)) == 0 ? arr[bitArr[bit] - 1 - i]->label("0") : arr[bitArr[bit] - 1 - i]->label("1");
+		(val & (1 << i)) == 0 ? ChangeButton(arr[bitArr[bit] - 1 - i],false) : ChangeButton(arr[bitArr[bit] - 1 - i],true);
 	
 }
 
@@ -319,8 +347,16 @@ void SetValue(Fl_Input* who, Fl_Button* arr[], bool)
 		sscanf(who->value(), "%o", &val); break;
 	}
 
+	switch (who->y())
+	{
+	case aiY:
+		cA = val;break;
+	case biY:
+		cB=val;break;
+	}
+
 	for (int i = 0; i < bitArr[bit]; i++)
-		(val & (((long long)(1)) << i)) == 0 ? arr[bitArr[bit] - 1 - i]->label("0") : arr[bitArr[bit] - 1 - i]->label("1");
+		(val & (((long long)(1)) << i)) == 0 ? ChangeButton(arr[bitArr[bit] - 1 - i],false) : ChangeButton(arr[bitArr[bit] - 1 - i],true);
 
 }
 
