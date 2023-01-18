@@ -1,0 +1,79 @@
+local-data
+*.txt
+*.pcf
+notes
+*.bdf
+.clangd/
+compile_commands.json
+
+*.pc
+config.*
+.deps
+.libs
+Makefile
+Makefile.in
+aclocal.m4
+autom4te.cache/
+compile
+configure
+depcomp
+install-sh
+libtool
+ltmain.sh
+m4/
+missing
+stamp-h1
+src/SDL_pcf.h
+test/ayba
+test/ayba-sf
+test/ayba-sf-gpu
+docs/build/
+test/simple-test
+test/simple-test-sf
+test/placement-test
+test/number-test
+
+# Prerequisites
+*.d
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Linker output
+*.ilk
+*.map
+*.exp
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+

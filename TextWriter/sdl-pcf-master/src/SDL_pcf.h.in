@@ -1,0 +1,140 @@
+#ifndef SDL_PCF_H
+#define SDL_PCF_H
+#include <stdbool.h>
+
+@SDL_GPU_INCLUDE@
+#include "SDL_surface.h"
+#include "SDL_render.h"
+
+#include "pcfread.h"
+
+#define PCF_LOWER_CASE "abcdefghijklmnopqrstuvwxyz"
+#define PCF_UPPER_CASE "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+#define PCF_ALPHA "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+#define PCF_DIGITS "0123456789,.'\x8f"
+#define ASCII_PRINTABLE " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ" \
+                        "[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
+
+#define PCF_TEXTURE_SDL2 1
+#define PCF_TEXTURE_GPU 2
+#define PCF_TEXTURE_TYPE @PCF_TEXTURE_TYPE@
+
+typedef enum __attribute__((__packed__)){
+     RightToCol    = 1 << 0, /*00000001*/
+     LeftToCol   = 1 << 1, /*00000010*/
+     CenterOnCol  = 1 << 2, /*00000100*/
+     BelowRow     = 1 << 3, /*00001000*/
+     AboveRow     = 1 << 4, /*00010000*/
+     CenterOnRow  = 1 << 5  /*00100000*/
+}PCF_TextPlacement;
+
+typedef enum __attribute__((__packed__)){
+    TypeInt,
+    TypeIntUnsigned,
+    TypeFloat,
+    TypeDouble
+}PCF_NumberType;
+
+typedef struct{
+    FontRec xfont;
+}PCF_Font;
+
+typedef struct{
+    int refcnt;
+    SDL_Surface *raster;
+    char *glyphs;
+    Uint16 nglyphs;
+    xCharInfo   metrics;
+    SDL_Color text_color;
+    @SFONT_TEXTURE_TYPE@ *texture;
+}PCF_StaticFont;
+
+typedef struct{
+    SDL_Point src;
+    SDL_Point dst;
+}PCF_StaticFontPatch;
+
+typedef struct{
+    SDL_Rect src;
+    SDL_Point dst;
+}PCF_StaticFontRectPatch;
+
+PCF_Font *PCF_OpenFont(const char *filename);
+void PCF_CloseFont(PCF_Font *self);
+bool PCF_FontWriteChar(PCF_Font *font, int c, Uint32 color, SDL_Surface *destination, SDL_Rect *location);
+bool PCF_FontWrite(PCF_Font *font, const char *str, Uint32 color, SDL_Surface *destination, SDL_Rect *location);
+bool PCF_FontWriteNumber(PCF_Font *font, void *value, PCF_NumberType type, int8_t precision, Uint32 color, SDL_Surface *destination, SDL_Rect *location);
+bool PCF_FontWriteAt(PCF_Font *font, const char *str, Uint32 color, SDL_Surface *destination, Uint32 col, Uint32 row, PCF_TextPlacement placement);
+bool PCF_FontWriteNumberAt(PCF_Font *font, void *value, PCF_NumberType type, int8_t precision, Uint32 color, SDL_Surface *destination, Uint32 col, Uint32 row, PCF_TextPlacement placement);
+void PCF_FontGetSizeRequest(PCF_Font *font, const char *str, Uint32 *w, Uint32 *h);
+void PCF_FontGetSizeRequestRect(PCF_Font *font, const char *str, SDL_Rect *rect);
+
+bool PCF_FontRenderChar(PCF_Font *font, int c, SDL_Renderer *renderer, SDL_Rect *location);
+bool PCF_FontRender(PCF_Font *font, const char *str, SDL_Color *color, SDL_Renderer *renderer, SDL_Rect *location);
+
+/* There are two kinds of metrics, metrics and ink_metrics.
+ * metrics represent the dimension of the area described in the
+ * bitmaps: An 8x8 bitmap will induce metrics of 8x8.
+ *
+ * ink_metrics are the bounding box of lit pixels, which can vary
+ * per character.
+ *
+ * Most of the time, we are only interested in metrics.
+ * */
+/* Getting the address here to avoid having . access with Metrics and
+ * -> access with InkMetrics
+ * PCF_FontInkMetrics can be offseted to a specific index
+ *
+ * */
+#define PCF_FontMetrics(font) ((font)->xfont.fontPrivate->metrics->metrics)
+#define PCF_FontInkMetrics(font) ((font)->xfont.fontPrivate->ink_metrics)
+
+#define PCF_FontCharWidth(font) (PCF_FontMetrics(font).characterWidth)
+#define PCF_FontCharHeight(font) (PCF_FontMetrics(font).ascent + PCF_FontMetrics(font).descent)
+
+#define PCF_StaticFontCharWidth(font) ((font)->metrics.characterWidth)
+#define PCF_StaticFontCharHeight(font) ((font)->metrics.ascent + (font)->metrics.descent)
+
+PCF_StaticFont *PCF_FontCreateStaticFont(PCF_Font *font, SDL_Color *color, int nsets, ...);
+PCF_StaticFont *PCF_FontCreateStaticFontVA(PCF_Font *font, SDL_Color *color, int nsets, size_t tlen, va_list ap);
+void PCF_FreeStaticFont(PCF_StaticFont *self);
+int PCF_StaticFontGetCharRect(PCF_StaticFont *font, int c, SDL_Rect *glyph);
+void PCF_StaticFontGetSizeRequest(PCF_StaticFont *font, const char *str, Uint32 *w, Uint32 *h);
+void PCF_StaticFontGetSizeRequestRect(PCF_StaticFont *font, const char *str, SDL_Rect *rect);
+size_t PCF_StaticFontPreWriteString(PCF_StaticFont *font, int len, const char *str, SDL_Rect *location,
+                                    size_t npatches, PCF_StaticFontPatch *patches);
+size_t PCF_StaticFontPreWriteStringOffset(PCF_StaticFont *font,
+                                          int len, const char *str,
+                                          SDL_Rect *location,
+                                          int xoffset, int yoffset,
+                                          size_t npatches, PCF_StaticFontRectPatch *patches);
+bool PCF_StaticFontCanWrite(PCF_StaticFont *font, SDL_Color *color, const char *sequence);
+void PCF_StaticFontCreateTexture(PCF_StaticFont *font @SFONT_CREATE_TEXTURE_ARGS@);
+
+void PCF_FontDumpGlpyh(PCF_Font *font, int c);
+
+static inline PCF_StaticFont *PCF_StaticFontRef(PCF_StaticFont *self)
+{
+    self->refcnt++;
+    return self;
+}
+
+static inline PCF_StaticFont *PCF_StaticFontUnref(PCF_StaticFont *self)
+{
+    self->refcnt--;
+    return self;
+}
+
+static inline PCF_Font *PCF_FontRef(PCF_Font *self)
+{
+    self->xfont.refcnt++;
+    return self;
+}
+
+static inline PCF_Font *PCF_FontUnref(PCF_Font *self)
+{
+    self->xfont.refcnt--;
+    return self;
+}
+
+#endif /* SDL_PCF_H */
