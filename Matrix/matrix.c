@@ -77,7 +77,11 @@
 //#include <dos.h>
 int WE = 0;
 extern char S[356];
-char *pS = S;
+extern char *pS;
+
+extern int check;
+extern matrix* ans;
+
 double Val;
 void init(void);
 double Sqrt(double x);
@@ -130,7 +134,7 @@ Funcs[]=
 };
 
 
-#line 134 "matrix.c"
+#line 138 "matrix.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -210,14 +214,14 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 64 "matrix.y"
+#line 68 "matrix.y"
 
            double val;
            Symbol *sym;
            char Name;
           
 
-#line 221 "matrix.c"
+#line 225 "matrix.c"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -663,10 +667,10 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int16 yyrline[] =
 {
-       0,    82,    82,    83,    84,    85,    86,    87,    88,    89,
-      91,    93,   101,   102,   105,   107,   108,   109,   110,   111,
-     112,   113,   117,   118,   119,   120,   121,   124,   135,   149,
-     165,   180,   202,   216,   226,   242,   257,   274,   291,   309
+       0,    86,    86,    87,    88,    89,    90,    91,    92,    93,
+      95,    97,   105,   106,   109,   111,   112,   113,   114,   115,
+     116,   117,   121,   122,   123,   124,   125,   128,   139,   153,
+     169,   184,   206,   220,   230,   246,   261,   278,   295,   313
 };
 #endif
 
@@ -1287,141 +1291,141 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* prog: '\n'  */
-#line 82 "matrix.y"
+#line 86 "matrix.y"
                                               { printf(">\n"); }
-#line 1293 "matrix.c"
+#line 1297 "matrix.c"
     break;
 
   case 3: /* prog: expr '\n'  */
-#line 83 "matrix.y"
+#line 87 "matrix.y"
                                          { Val=(yyvsp[-1].val); printf("=>%lf\n",(yyval.val));  }
-#line 1299 "matrix.c"
+#line 1303 "matrix.c"
     break;
 
   case 4: /* prog: matop '\n'  */
-#line 84 "matrix.y"
-               {  printf("matop\n"); fflush(stdout);      }
-#line 1305 "matrix.c"
+#line 88 "matrix.y"
+               {  printf("matop1\n"); fflush(stdout);      }
+#line 1309 "matrix.c"
     break;
 
   case 5: /* prog: defmat '\n'  */
-#line 85 "matrix.y"
+#line 89 "matrix.y"
                {  printf ("defmat\n"); fflush(stdout); }
-#line 1311 "matrix.c"
+#line 1315 "matrix.c"
     break;
 
   case 6: /* prog: prog matop '\n'  */
-#line 86 "matrix.y"
-                    {  printf("matop\n"); fflush(stdout);      }
-#line 1317 "matrix.c"
+#line 90 "matrix.y"
+                    {  printf("matop2\n"); fflush(stdout);      }
+#line 1321 "matrix.c"
     break;
 
   case 7: /* prog: prog defmat '\n'  */
-#line 87 "matrix.y"
+#line 91 "matrix.y"
                     {  printf ("defmat\n"); fflush(stdout); }
-#line 1323 "matrix.c"
+#line 1327 "matrix.c"
     break;
 
   case 8: /* prog: prog expr '\n'  */
-#line 88 "matrix.y"
+#line 92 "matrix.y"
                                          { Val=(yyvsp[-1].val); printf("->%lf\n",(yyval.val));  }
-#line 1329 "matrix.c"
+#line 1333 "matrix.c"
     break;
 
   case 9: /* prog: prog error '\n'  */
-#line 89 "matrix.y"
+#line 93 "matrix.y"
                   {yyerrok; printf("Error!\n"); }
-#line 1335 "matrix.c"
+#line 1339 "matrix.c"
     break;
 
   case 11: /* matelem: MAT '[' expr ']' '[' expr ']'  */
-#line 94 "matrix.y"
+#line 98 "matrix.y"
 {{ int i,ind;
         ind=(char)(yyvsp[-6].Name)-'a';   printf ("no=%o\n",ind); fflush(stdout);
         pm[ind]=(matrix *)malloc(sizeof(matrix));
         pm[ind]->cols=(int)(yyvsp[-4].val);
         pm[ind]->rows=(int)(yyvsp[-1].val);
         }}
-#line 1346 "matrix.c"
+#line 1350 "matrix.c"
     break;
 
   case 14: /* assign: VAR '=' expr  */
-#line 105 "matrix.y"
+#line 109 "matrix.y"
                                          {  (yyval.val)=(yyvsp[-2].sym)->u.val=(yyvsp[0].val); (yyvsp[-2].sym)->type=VAR; }
-#line 1352 "matrix.c"
+#line 1356 "matrix.c"
     break;
 
   case 15: /* expr: NUM  */
-#line 107 "matrix.y"
+#line 111 "matrix.y"
                                          {  (yyval.val)=(yyvsp[0].val); }
-#line 1358 "matrix.c"
+#line 1362 "matrix.c"
     break;
 
   case 16: /* expr: VAR  */
-#line 108 "matrix.y"
+#line 112 "matrix.y"
                                          { (yyval.val)= (yyvsp[0].sym)->u.val; }
-#line 1364 "matrix.c"
+#line 1368 "matrix.c"
     break;
 
   case 17: /* expr: FUNC '(' expr ')'  */
-#line 109 "matrix.y"
+#line 113 "matrix.y"
                                          {  (yyval.val)=(((yyvsp[-3].sym)->u.ptr)((yyvsp[-1].val))); }
-#line 1370 "matrix.c"
+#line 1374 "matrix.c"
     break;
 
   case 18: /* expr: expr '+' expr  */
-#line 110 "matrix.y"
+#line 114 "matrix.y"
                                          { (yyval.val)=(yyvsp[-2].val)+(yyvsp[0].val); }
-#line 1376 "matrix.c"
+#line 1380 "matrix.c"
     break;
 
   case 19: /* expr: expr '-' expr  */
-#line 111 "matrix.y"
+#line 115 "matrix.y"
                                          { (yyval.val)=(yyvsp[-2].val)-(yyvsp[0].val); }
-#line 1382 "matrix.c"
+#line 1386 "matrix.c"
     break;
 
   case 20: /* expr: expr '*' expr  */
-#line 112 "matrix.y"
+#line 116 "matrix.y"
                                          { (yyval.val)=(yyvsp[-2].val)*(yyvsp[0].val); }
-#line 1388 "matrix.c"
+#line 1392 "matrix.c"
     break;
 
   case 21: /* expr: expr '/' expr  */
-#line 113 "matrix.y"
+#line 117 "matrix.y"
                                          { if ((yyvsp[0].val)!=0) (yyval.val)=(yyvsp[-2].val)/(yyvsp[0].val);
                                           else
                             { printf(" Zero divide\n"); (yyval.val)=(yyvsp[-2].val); }
                                           }
-#line 1397 "matrix.c"
+#line 1401 "matrix.c"
     break;
 
   case 22: /* expr: expr '^' expr  */
-#line 117 "matrix.y"
+#line 121 "matrix.y"
                                           { (yyval.val)=pow((yyvsp[-2].val),(yyvsp[0].val)); }
-#line 1403 "matrix.c"
+#line 1407 "matrix.c"
     break;
 
   case 23: /* expr: '-' expr  */
-#line 118 "matrix.y"
+#line 122 "matrix.y"
                                           {(yyval.val)=-(yyvsp[0].val); }
-#line 1409 "matrix.c"
+#line 1413 "matrix.c"
     break;
 
   case 25: /* expr: '(' expr ')'  */
-#line 120 "matrix.y"
+#line 124 "matrix.y"
                                           { (yyval.val)=(yyvsp[-1].val); }
-#line 1415 "matrix.c"
+#line 1419 "matrix.c"
     break;
 
   case 26: /* expr: QUIT  */
-#line 121 "matrix.y"
+#line 125 "matrix.y"
              {exit(0);}
-#line 1421 "matrix.c"
+#line 1425 "matrix.c"
     break;
 
   case 27: /* matop: OUTPUT MAT  */
-#line 124 "matrix.y"
+#line 128 "matrix.y"
                {{int i;  int j; int ind;
         ind=(char)(yyvsp[0].Name)-'a';
         printf("matrix %c \n",(yyvsp[0].Name));
@@ -1433,11 +1437,11 @@ yyreduce:
            }
            putchar( '\n');
    }}
-#line 1437 "matrix.c"
+#line 1441 "matrix.c"
     break;
 
   case 28: /* matop: INPUT MAT  */
-#line 136 "matrix.y"
+#line 140 "matrix.y"
 {{ int i,j,ind;
   ind = (char)(yyvsp[0].Name)-'a';
 
@@ -1450,11 +1454,11 @@ yyreduce:
         scanf("%lf",&pm[ind]->elem[i][j]);
         }
 }}
-#line 1454 "matrix.c"
+#line 1458 "matrix.c"
     break;
 
   case 29: /* matop: MAT '=' MAT '+' MAT  */
-#line 150 "matrix.y"
+#line 154 "matrix.y"
 {{int ind1,ind2,ind3;
 ind1=(char)(yyvsp[-4].Name)-'a';
 ind2=(char)(yyvsp[-2].Name)-'a';
@@ -1470,11 +1474,11 @@ if( (pm[ind1]->cols == pm[ind2]->cols) &&
  }
 else printf("These matrixes are not equal by size\n");
 }}
-#line 1474 "matrix.c"
+#line 1478 "matrix.c"
     break;
 
   case 30: /* matop: MAT '=' MAT '-' MAT  */
-#line 166 "matrix.y"
+#line 170 "matrix.y"
 {{int ind1,ind2,ind3;
 ind1=(char)(yyvsp[-4].Name)-'a';
 ind2=(char)(yyvsp[-2].Name)-'a';
@@ -1489,11 +1493,11 @@ for(i=0;i<pm[ind1]->cols;i++)
 }
 else printf("These matrixes are not equal by size\n");
 }}
-#line 1493 "matrix.c"
+#line 1497 "matrix.c"
     break;
 
   case 31: /* matop: MAT '=' MAT '*' MAT  */
-#line 181 "matrix.y"
+#line 185 "matrix.y"
 {{int ind1,ind2,ind3;
 ind1=(char)(yyvsp[-4].Name)-'a';
 ind2=(char)(yyvsp[-2].Name)-'a';
@@ -1515,11 +1519,11 @@ for(k=0;k<pm[ind2]->cols;k++)
 }
 else printf("These matrixes are not equal by size\n");
 }}
-#line 1519 "matrix.c"
+#line 1523 "matrix.c"
     break;
 
   case 32: /* matop: MAT '=' MAT  */
-#line 203 "matrix.y"
+#line 207 "matrix.y"
 {{int ind1,ind2;
 ind1=(char)(yyvsp[-2].Name)-'a';
 ind2=(char)(yyvsp[0].Name)-'a';
@@ -1532,25 +1536,25 @@ for(i=0;i<pm[ind1]->cols;i++)
 }
 else yyerror("Таких матриц нет!");
 }}
-#line 1536 "matrix.c"
+#line 1540 "matrix.c"
     break;
 
   case 33: /* matop: RAND MAT  */
-#line 217 "matrix.y"
+#line 221 "matrix.y"
 {{int ind;
 ind = (char)(yyvsp[0].Name)-'a';
 	{
 	int i, j;
 	for (i = 0; i<pm[ind]->cols; i++)
 		for(j=0; j<pm[ind]->rows; j++)
-			pm[ind]->elem[i][j]=rand();
+			pm[ind]->elem[i][j]=rand()%1000;
 	}
 }}
-#line 1550 "matrix.c"
+#line 1554 "matrix.c"
     break;
 
   case 34: /* matop: VAR '=' DETERM '(' MAT ')'  */
-#line 227 "matrix.y"
+#line 231 "matrix.y"
 {{
   int ind;
   float num;
@@ -1565,11 +1569,11 @@ ind = (char)(yyvsp[0].Name)-'a';
   }
   else printf("This matrix isn't square\n");
 }}
-#line 1569 "matrix.c"
+#line 1573 "matrix.c"
     break;
 
   case 35: /* matop: VAR '=' '@' '(' MAT ')'  */
-#line 243 "matrix.y"
+#line 247 "matrix.y"
 {{
   int ind;
   float num;
@@ -1584,11 +1588,11 @@ ind = (char)(yyvsp[0].Name)-'a';
   }
   else printf("This matrix isn't square\n");
 }}
-#line 1588 "matrix.c"
+#line 1592 "matrix.c"
     break;
 
   case 36: /* matop: MAT '=' INVERSE '(' MAT ')'  */
-#line 258 "matrix.y"
+#line 262 "matrix.y"
 {{int ind1,ind2;
   float det=0;
   int row,col,i,j;
@@ -1605,11 +1609,11 @@ if((pm[ind1]->cols==pm[ind1]->rows)&&(pm[ind2]->rows==pm[ind2]->cols))
   else printf("These matrixes are not equal by size\n");
 else printf("These matrixes are not square\n");
 }}
-#line 1609 "matrix.c"
+#line 1613 "matrix.c"
     break;
 
   case 37: /* matop: MAT '=' '~' '(' MAT ')'  */
-#line 275 "matrix.y"
+#line 279 "matrix.y"
 {{int ind1,ind2;
   float det=0;
   int row,col,i,j;
@@ -1626,11 +1630,11 @@ if((pm[ind1]->cols==pm[ind1]->rows)&&(pm[ind2]->rows==pm[ind2]->cols))
   else printf("These matrixes are not equal by size\n");
 else printf("These matrixes are not square\n");
 }}
-#line 1630 "matrix.c"
+#line 1634 "matrix.c"
     break;
 
   case 38: /* matop: MAT '=' MAT '*' expr  */
-#line 292 "matrix.y"
+#line 296 "matrix.y"
 {{int ind1,ind2;
 double dig;
 dig=(yyvsp[0].val);
@@ -1647,11 +1651,11 @@ if((pm[ind1]->cols==pm[ind2]->cols)&&(pm[ind1]->rows==pm[ind2]->rows))
 else printf("These matrixes are not equal by size\n");
 
 }}
-#line 1651 "matrix.c"
+#line 1655 "matrix.c"
     break;
 
   case 39: /* matop: MAT '=' MAT '/' expr  */
-#line 310 "matrix.y"
+#line 314 "matrix.y"
 {{
 int ind1,ind2;
 double dig;
@@ -1667,11 +1671,11 @@ if((pm[ind1]->cols==pm[ind2]->cols)&&(pm[ind1]->rows==pm[ind2]->rows))
 }
 else yyerror("Такой матрицы нет");
 }}
-#line 1671 "matrix.c"
+#line 1675 "matrix.c"
     break;
 
 
-#line 1675 "matrix.c"
+#line 1679 "matrix.c"
 
       default: break;
     }
@@ -1864,7 +1868,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 327 "matrix.y"
+#line 331 "matrix.y"
 
 matrix *reduce(int row,int column, matrix *pm)
 {

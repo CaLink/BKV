@@ -7,7 +7,11 @@
 //#include <dos.h>
 int WE = 0;
 extern char S[356];
-char *pS = S;
+extern char *pS;
+
+extern int check;
+extern matrix* ans;
+
 double Val;
 void init(void);
 double Sqrt(double x);
@@ -81,9 +85,9 @@ Funcs[]=
 %%
 prog:  '\n'                                   { printf(">\n"); }
 | expr '\n'                              { Val=$1; printf("=>%lf\n",$$);  }
-| matop '\n'   {  printf("matop\n"); fflush(stdout);      }
+| matop '\n'   {  printf("matop1\n"); fflush(stdout);      }
 | defmat '\n'  {  printf ("defmat\n"); fflush(stdout); }
-| prog matop '\n'   {  printf("matop\n"); fflush(stdout);      }
+| prog matop '\n'   {  printf("matop2\n"); fflush(stdout);      }
 | prog defmat '\n'  {  printf ("defmat\n"); fflush(stdout); }
 | prog expr '\n'                         { Val=$2; printf("->%lf\n",$$);  }
 | prog error '\n' {yyerrok; printf("Error!\n"); }
@@ -220,7 +224,7 @@ ind = (char)$2-'a';
 	int i, j;
 	for (i = 0; i<pm[ind]->cols; i++)
 		for(j=0; j<pm[ind]->rows; j++)
-			pm[ind]->elem[i][j]=rand();
+			pm[ind]->elem[i][j]=rand()%1000;
 	}
 }}
 |VAR'=' DETERM '('MAT')'

@@ -4,7 +4,22 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+typedef struct matrix
+           {
+             char name;
+             int cols;
+             int rows;
+             double elem[10][10];
+           } matrix;
+
+
 char S[200]; 
+char *pS;
+
+matrix* ans;
+int check;
+
+
 extern int A,B,C,D;
 extern double Val;
 extern int WE;
@@ -14,16 +29,58 @@ Fl_Input *input=(Fl_Input *)0;
 
 Fl_Button *calc_btn=(Fl_Button *)0;
 
+void showMatrix()
+{
+    char str[50];
+    printf("%d,%d\n",ans->cols,ans->rows);
+    printf("%f,%f\n",ans->elem[0][0],ans->elem[0][1]);
+    printf("%f,%f\n",ans->elem[1][0],ans->elem[1][1]);
+    fflush(stdout);
+    Fl_Window* adw = new Fl_Window (10,10,20+110*ans->rows,20+25*ans->cols);
+    for(int i =0; i<ans->rows;i++)
+    for(int j =0; j<ans->cols;j++)
+    {
+      sprintf(str,"%lf",ans->elem[i][j]);
+      
+      Fl_Button* o = new Fl_Button(10 +j*110, 10+i*25, 110, 25, "");
+      o->label((const char*)str);
+      o->box(FL_NO_BOX);
+			o->labelsize(14);
+    }
+    adw->show();
+}
+
+
 static void cb_calc_btn(Fl_Button*, void*) {
   strcpy(S,input->value());
   strcat(S,"\n");
 if(in==0)
 	{init();
-	in=1;};
+	in=1;
+
+  check = 1;
+  ans = (matrix*)malloc(sizeof(matrix));
+  ans->cols = 5;
+  ans->rows = 5;
+  ans->elem[0][0]=0;
+  ans->elem[0][1]=1;
+  ans->elem[1][0]=2;
+  ans->elem[1][1]=3;
+  };
+	
+pS=S;
+//check = 0;
 yyparse();
 if (WE==1) {calc_btn->color(FL_RED);}
 else {calc_btn->color(48);}
 sprintf(S,"%lf",Val);
+
+if(check==1)
+{
+
+  showMatrix();
+}
+
 history->add(input->value(),0);
 input->value("");
 result->value(S);
