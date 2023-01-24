@@ -1,0 +1,16 @@
+def point P1 1 1
+def point P2 1 3
+def point P3 3 3
+def point P4 3 1
+def polyg Pol 4 P1 P2 P3 P4
+def point P5 2 2
+def point P6 5 6
+def point P7 2 0
+area Pol
+is Pol P5
+is Pol P6
+is Pol P7
+def circle Cir 2 2 2
+is Cir P5
+is Cir P6
+is Cir P7
